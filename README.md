@@ -1,2 +1,5 @@
 # arch-install
-Arch Linux Simple Install Script
+ARCH Linux simple install script
+
+# WARNING #
+Careful with arch1.sh - it's destructive!!!

@@ -1,0 +1,48 @@
+#
+# These things are run when an Openbox X Session is started.
+# You may place a similar script in $HOME/.config/openbox/autostart
+# to run user-specific things.
+#
+
+# If you want to use GNOME config tools...
+#
+#if test -x /usr/lib/openbox/gnome-settings-daemon >/dev/null; then
+#  /usr/lib/openbox/gnome-settings-daemon &
+#elif which gnome-settings-daemon >/dev/null 2>&1; then
+#  gnome-settings-daemon &
+#fi
+
+# If you want to use XFCE config tools...
+#
+#xfce-mcs-manager &
+
+# i3lock
+xautolock -time 60 -locker /usr/local/bin/i3lock.sh &
+
+# Turn on/off system beep
+xset b off
+
+# Set keyboard settings - 250 ms delay and 25 cps repeat rate
+xset r rate 250 25
+
+xfce4-power-manager &
+
+#xcompmgr &
+compton -b &
+
+tint2 &
+(sleep 10; conky) &
+
+(sleep 2; feh --bg-scale /usr/share/images/flowery.jpg) &
+
+#nm-applet --sm-disable &
+volumeicon &
+
+# Xmodmap
+xmodmap ~/.Xmodmap &
+
+#Авто цветовая калибровка экрана в зависимости от времени
+redshift &
+
+# Dropbox
+(sleep 60s; dropbox) &

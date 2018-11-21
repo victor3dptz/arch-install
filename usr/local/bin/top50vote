@@ -1,0 +1,10 @@
+#!/bin/bash
+
+curl -A "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)" -X POST "http://www.topsites.com.br/cgi-bin/top50/vote" --data "id=21154"
+curl -A "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)" --referer http://www.topsites.com.br/cgi-bin/top50/vote -X POST "http://www.topsites.com.br/cgi-bin/top50/votec" --data "id=21154"
+
+#cat proxy.txt | while read name
+#do
+#curl -y 5 -v -x $name -A "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)" -X POST "http://www.topsites.com.br/cgi-bin/top50/vote" --data "id=21154"
+#curl -y 5 -v -x $name -A "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)" --referer http://www.topsites.com.br/cgi-bin/top50/vote -X POST "http://www.topsites.com.br/cgi-bin/top50/votec" --data "id=21154"
+#done

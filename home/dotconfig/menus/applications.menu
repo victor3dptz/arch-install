@@ -1,0 +1,5 @@
+<Menu>
+<Name>Applications</Name>
+<MergeFile 
+type="parent">/etc/xdg/menus/lxde-applications.menu</MergeFile>
+</Menu>
