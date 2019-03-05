@@ -25,7 +25,8 @@ xset b off
 # Set keyboard settings - 250 ms delay and 25 cps repeat rate
 xset r rate 250 25
 
-xfce4-power-manager &
+synclient TapButton1=1
+cbatticon &
 
 #xcompmgr &
 compton -b &
