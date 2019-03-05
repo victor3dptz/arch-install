@@ -79,7 +79,7 @@ chmod +x /usr/local/bin/*
 
 pacman -S xcompmgr conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono
 #pacman -S xfce4-power-manager
-pacman -S cbatticon xf86-input-synaptics lxterminal transmission-gtk filezilla libva-intel-driver i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail fetchmail poppler lynx mutt terminator alsa-utils moc gmrun
+pacman -S cbatticon oblogout xf86-input-synaptics lxterminal transmission-gtk filezilla libva-intel-driver i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail fetchmail poppler lynx mutt terminator alsa-utils moc gmrun
 
 
 echo "Все установлено!! Зайди в юзера и скачай arch4.sh"
