@@ -236,6 +236,8 @@ arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/bu
 arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/bunsen-themes-git/bunsen-themes-git*.xz --noconfirm"
 rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 
+# Вернем взад
+sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 #yaourt -S links-g-directfb
 #gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC
