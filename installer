@@ -81,7 +81,7 @@ sed -i '1 i\Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' /etc/pacm
 # Установим базовые пакеты системы.
 pacstrap -i /mnt base base-devel $UCODE --noconfirm
 # Для тех, кто устанавливает систему через Wi-Fi необходимо также установить пакеты netctl, dialog и wpa_supplicant
-pacstrap -i /mnt netctl dialog wpa_supplicant wget reflector nfs-utils --noconfirm
+pacstrap -i /mnt netctl dialog wpa_supplicant wget reflector nfs-utils rsync --noconfirm
 # Установка загрузчика Grub
 if [[ $SYS == 'BIOS' ]]; then
 	arch-chroot /mnt pacman -S grub-bios --noconfirm
