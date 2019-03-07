@@ -81,7 +81,7 @@ sed -i '1 i\Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' /etc/pacm
 # Установим базовые пакеты системы.
 pacstrap -i /mnt base base-devel $UCODE --noconfirm
 # Для тех, кто устанавливает систему через Wi-Fi необходимо также установить пакеты netctl, dialog и wpa_supplicant
-pacstrap -i /mnt netctl dialog wpa_supplicant wget reflector nfs-utils rsync --noconfirm
+pacstrap -i /mnt netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync --noconfirm
 # Установка загрузчика Grub
 if [[ $SYS == 'BIOS' ]]; then
 	arch-chroot /mnt pacman -S grub-bios --noconfirm
@@ -159,7 +159,7 @@ arch-chroot /mnt /bin/bash -c "pacman -Suy --noconfirm"
 arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm base-devel git wget yajl"
 
 echo "Добавим своего пользователя (меняем username на свое) и добавляем его в нужные группы"
-arch-chroot /mnt /bin/bash -c "useradd -m -g users -G audio,games,lp,optical,power,scanner,storage,video,wheel -s /bin/bash $MYUSER"
+arch-chroot /mnt /bin/bash -c "useradd -m -k /etc/skel -g users -G audio,games,lp,optical,power,scanner,storage,video,wheel -s /bin/bash $MYUSER"
 echo "Установим пароль для нашего юзера"
 arch-chroot /mnt /bin/bash -c "passwd $MYUSER"
 #Добавим ему информацию GECOS:
