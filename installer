@@ -52,6 +52,9 @@ export LANG=ru_RU.UTF-8
 # 3 - swap 
 # 4 - /home
 
+# Отредактируй команды по разметке ниже или приготовь диск и примонтируй к /mnt сам после чего удали exit :)
+exit
+
 if [[ $SYS == 'BIOS' ]]; then
 	echo "Подготовь разметку диска! После этого примонтируй к /mnt и убери exit"
 else
@@ -70,8 +73,7 @@ else
 	# mount /dev/sda4 /mnt/home
 	# swapon /dev/sda3
 fi
-# Отредактируй команды по разметке выше или приготовь диск сам после чего удали exit :)
-exit
+
 
 # Выбираем ближайшее зеркало для pacman
 sed -i '1 i\Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
