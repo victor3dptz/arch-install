@@ -117,7 +117,7 @@ if [[ $SYS == 'BIOS' ]]; then
 fi
 if [[ $SYS == 'UEFI' ]]; then
 arch-chroot /mnt /bin/bash -c "bootctl install"
-curl https://github.com/victor3dptz/arch-install/raw/master/boot/loader/entries/arch.conf > /mnt/boot/loader/entries/arch.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/boot/loader/entries/arch.conf > /mnt/boot/loader/entries/arch.conf
 fi
 
 echo "!!! Установка пароля для ROOT"
@@ -179,46 +179,46 @@ arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-intel lib32-intel-dri gtk-en
 
 arch-chroot /mnt /bin/bash -c "pacman -S tint2 feh acpi mc nano cdparanoia cdrkit p7zip unrar zip openssh openbox obconf obmenu openbox-themes faenza-icon-theme tangerine-icon-theme pcmanfm file-roller gvfs gnome-menus ntfs-3g dosfstools exfat-utils xbindkeys networkmanager network-manager-applet hicolor-icon-theme gpicview volumeicon --noconfirm"
 
-curl https://github.com/victor3dptz/arch-install/raw/master/etc/X11/xorg.conf.d/20-keyboard-layout.conf > /mnt/etc/X11/xorg.conf.d/20-keyboard-layout.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/X11/xorg.conf.d/20-keyboard-layout.conf > /mnt/etc/X11/xorg.conf.d/20-keyboard-layout.conf
 
 # LightDM
 arch-chroot /mnt /bin/bash -c "pacman -S lightdm lightdm-gtk-greeter --noconfirm"
 arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
-curl https://github.com/victor3dptz/arch-install/raw/master/etc/lightdm/lightdm-gtk-greeter.conf > /mnt/etc/lightdm/lightdm-gtk-greeter.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/lightdm/lightdm-gtk-greeter.conf > /mnt/etc/lightdm/lightdm-gtk-greeter.conf
 
 mkdir -p /mnt/usr/share/images
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/share/images/flowery.jpg > /mnt/usr/share/images/flowery.jpg
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/share/images/linen.png > /mnt/usr/share/images/linen.png
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/flowery.jpg > /mnt/usr/share/images/flowery.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/linen.png > /mnt/usr/share/images/linen.png
 
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/local/bin/i3lock.sh > /mnt/usr/local/bin/i3lock.sh
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/local/bin/mutt.sh > /mnt/usr/local/bin/mutt.sh
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/local/bin/passmenu > /mnt/usr/local/bin/passmenu
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/local/bin/ssh_menu.sh > /mnt/usr/local/bin/ssh_menu.sh
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/local/bin/weather.py > /mnt/usr/local/bin/weather.py
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/i3lock.sh > /mnt/usr/local/bin/i3lock.sh
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/mutt.sh > /mnt/usr/local/bin/mutt.sh
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/passmenu > /mnt/usr/local/bin/passmenu
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/ssh_menu.sh > /mnt/usr/local/bin/ssh_menu.sh
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/weather.py > /mnt/usr/local/bin/weather.py
 chmod +x /mnt/usr/local/bin/*
 
 arch-chroot /mnt /bin/bash -c "pacman -S xcompmgr conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono --noconfirm"
 arch-chroot /mnt /bin/bash -c "pacman -S cbatticon oblogout xf86-input-synaptics lxterminal transmission-gtk filezilla libva-intel-driver i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail fetchmail poppler lynx mutt terminator alsa-utils moc gmrun --noconfirm"
 
 # Заполнение skel
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotbashrc > /mnt/etc/skel/.bashrc
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotconkyrc > /mnt/etc/skel/.conkyrc
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotfonts.conf > /mnt/etc/skel/.fonts.conf
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotgtkrc-2.0 > /mnt/etc/skel/.gtkrc-2.0
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotbashrc > /mnt/etc/skel/.bashrc
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconkyrc > /mnt/etc/skel/.conkyrc
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotfonts.conf > /mnt/etc/skel/.fonts.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotgtkrc-2.0 > /mnt/etc/skel/.gtkrc-2.0
 mkdir /mnt/etc/skel/.moc
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotmoc/config > /mnt/etc/skel/.moc/config
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotmoc/config > /mnt/etc/skel/.moc/config
 mkdir -p /mnt/etc/skel/.config/openbox
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotconfig/openbox/autostart > /mnt/etc/skel/.config/openbox/autostart
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotconfig/openbox/environment > /mnt/etc/skel/.config/openbox/environment
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotconfig/openbox/menu.xml > /mnt/etc/skel/.config/openbox/menu.xml
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotconfig/openbox/rc.xml > /mnt/etc/skel/.config/openbox/rc.xml
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/openbox/autostart > /mnt/etc/skel/.config/openbox/autostart
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/openbox/environment > /mnt/etc/skel/.config/openbox/environment
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/openbox/menu.xml > /mnt/etc/skel/.config/openbox/menu.xml
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/openbox/rc.xml > /mnt/etc/skel/.config/openbox/rc.xml
 mkdir /mnt/etc/skel/.config/menus
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotconfig/menus/applications.menu > /mnt/etc/skel/.config/menus/applications.menu
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/menus/applications.menu > /mnt/etc/skel/.config/menus/applications.menu
 mkdir /mnt/etc/skel/.config/dmenu
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotconfig/dmenu/dmenu-bind.sh > /mnt/etc/skel/.config/dmenu/dmenu-bind.sh
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/dmenu/dmenu-bind.sh > /mnt/etc/skel/.config/dmenu/dmenu-bind.sh
 chmod +x /mnt/etc/skel/.config/dmenu/dmenu-bind.sh
 mkdir /mnt/etc/skel/.config/tint2
-curl https://github.com/victor3dptz/arch-install/raw/master/home/dotconfig/tint2/tint2rc > /mnt/etc/skel/.config/tint2/tint2rc
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/tint2/tint2rc > /mnt/etc/skel/.config/tint2/tint2rc
 
 # AUR
 echo "Установка yaourt"
@@ -229,6 +229,8 @@ arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/package-query/package-que
 rm -dR /mnt/home/$MYUSER/package-query/
 arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yaourt.git /home/$MYUSER/yaourt; cd /home/$MYUSER/yaourt/; makepkg"
 arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.xz --noconfirm"
+rm -dR /mnt/home/$MYUSER/yaourt/
+
 
 echo "Осталось немножко..."
 # Bunsen Themes
@@ -236,7 +238,7 @@ arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/bu
 arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/bunsen-themes-git/bunsen-themes-git*.xz --noconfirm"
 rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 
-# Вернем взад
+# Вернем взад настройку pacman
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 #yaourt -S links-g-directfb
