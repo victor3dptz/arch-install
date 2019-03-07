@@ -101,7 +101,7 @@ sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /mnt/etc/locale.gen
 arch-chroot /mnt /bin/bash -c "locale-gen"
 
 echo "Сортировка pacman mirrorlist"
-arch-chroot /mnt /bin/bash -c "reflector --score 120 -l 50 -f 20 --sort rate -c RU --save /etc/pacman.d/mirrorlist"
+arch-chroot /mnt /bin/bash -c "reflector --score 120 -l 50 -f 20 --sort rate -c RU --verbose --save /etc/pacman.d/mirrorlist"
 
 echo "Создание mkinitcpio"
 #Добавим русскую локаль в консоль
