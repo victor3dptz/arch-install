@@ -122,9 +122,6 @@ arch-chroot /mnt /bin/bash -c "bootctl install"
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/boot/loader/entries/arch.conf > /mnt/boot/loader/entries/arch.conf
 fi
 
-echo "!!! Установка пароля для ROOT"
-arch-chroot /mnt /bin/bash -c "passwd"
-
 #Настраиваем сеть
 arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd"
 
@@ -152,18 +149,15 @@ echo "" >> /mnt/etc/pacman.conf
 echo "[archlinuxfr]" >> /mnt/etc/pacman.conf
 echo "SigLevel = Never" >> /mnt/etc/pacman.conf
 echo "Server = http://repo.archlinux.fr/x86_64" >> /mnt/etc/pacman.conf
-echo "pacman: раскомментируй [multilib]..."
-read -p "После нажатия любой кнопки откроется редактор..."
-nano /mnt/etc/pacman.conf
+### Uncomment multilib for AUR
+NUM=`awk '/\[multilib\]/{getline;getline;print NR}' /mnt/etc/pacman.conf`
+NUM1=`expr $NUM - 2`
+NUM2=`expr $NUM - 1`
+sed "$NUM1,$NUM2 s/^#//" /mnt/etc/pacman.conf
+###
+
 arch-chroot /mnt /bin/bash -c "pacman -Suy --noconfirm"
 arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm base-devel git wget yajl"
-
-echo "Добавим своего пользователя (меняем username на свое) и добавляем его в нужные группы"
-arch-chroot /mnt /bin/bash -c "useradd -m -k /etc/skel -g users -G audio,games,lp,optical,power,scanner,storage,video,wheel -s /bin/bash $MYUSER"
-echo "Установим пароль для нашего юзера"
-arch-chroot /mnt /bin/bash -c "passwd $MYUSER"
-#Добавим ему информацию GECOS:
-arch-chroot /mnt /bin/bash -c "chfn victor3d"
 
 # Устанавливаем и настраиваем sudo
 arch-chroot /mnt /bin/bash -c "pacman -S sudo --noconfirm"
@@ -222,6 +216,15 @@ chmod +x /mnt/etc/skel/.config/dmenu/dmenu-bind.sh
 mkdir /mnt/etc/skel/.config/tint2
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/tint2/tint2rc > /mnt/etc/skel/.config/tint2/tint2rc
 
+echo "!!! Установка пароля для ROOT"
+arch-chroot /mnt /bin/bash -c "passwd"
+echo "Добавим своего пользователя (меняем username на свое) и добавляем его в нужные группы"
+arch-chroot /mnt /bin/bash -c "useradd -m -k /etc/skel -g users -G audio,games,lp,optical,power,scanner,storage,video,wheel -s /bin/bash $MYUSER"
+echo "Установим пароль для нашего юзера"
+arch-chroot /mnt /bin/bash -c "passwd $MYUSER"
+#Добавим ему информацию GECOS:
+arch-chroot /mnt /bin/bash -c "chfn victor3d"
+
 # AUR
 echo "Установка yaourt"
 # Хак чтобы работал pacman в chroot
@@ -244,7 +247,7 @@ rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 #yaourt -S links-g-directfb
-#gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC
-#yaourt -S palemoon-bin palemoon-i18n-ru
+arch-chroot /mnt /bin/bash -c "gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC"
+arch-chroot -u $MYUSER /mnt yaourt -S palemoon-bin --noconfirm
 
 echo "Все готово! Перезагрузись и кайфуй!"
