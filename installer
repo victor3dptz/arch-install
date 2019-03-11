@@ -125,6 +125,7 @@ arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd"
 echo "$MYHOST" > /mnt/etc/hostname
 
 # Русифицируем нашу систему:
+arch-chroot /mnt /bin/bash -c "loadkeys ru"
 echo "FONT=cyr-sun16" >> /etc/vconsole.conf
 
 # Заполнение skel
@@ -192,7 +193,7 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/weather.py > /mnt/usr/local/bin/weather.py
 chmod +x /mnt/usr/local/bin/*
 
-curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/X11/xorg.conf.d/20-keyboard-layout.conf > /mnt/etc/X11/xorg.conf.d/20-keyboard-layout.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/X11/xorg.conf.d/00-keyboard.conf > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
 
 # AUR
 echo "Установка yaourt"
@@ -215,7 +216,16 @@ rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 #yaourt -S links-g-directfb
-arch-chroot /mnt gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC
-arch-chroot -u $MYUSER /mnt yaourt -S palemoon-bin --noconfirm
+#arch-chroot /mnt gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC
+#arch-chroot -u $MYUSER /mnt yaourt -S palemoon-bin --noconfirm
 
 echo "Все готово! Перезагрузись и кайфуй!"
+
+# Меняем имя компьютера (myhostname меняем на ваше):
+#hostnamectl set-hostname ThinkCentre
+#timedatectl set-timezone Europe/Moscow
+#timedatectl set-ntp true
+#hwclock --systohc --utc
+#localectl set-keymap ru
+#setfont cyr-sun16
+#localectl set-locale LANG="ru_RU.UTF-8"
