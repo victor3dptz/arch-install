@@ -93,7 +93,7 @@ genfstab -p /mnt >> /mnt/etc/fstab
 echo "Добавляем русскую локаль"
 sed -i 's/#ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/g' /mnt/etc/locale.gen
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /mnt/etc/locale.gen
-arch-chroot /mnt /bin/bash -c "locale-gen"
+arch-chroot /mnt locale-gen
 
 echo "Сортировка pacman mirrorlist"
 arch-chroot /mnt /bin/bash -c "reflector --score 120 -l 50 -f 20 --sort rate -c RU --verbose --save /etc/pacman.d/mirrorlist"
@@ -126,7 +126,8 @@ echo "$MYHOST" > /mnt/etc/hostname
 
 # Русифицируем нашу систему:
 arch-chroot /mnt /bin/bash -c "loadkeys ru"
-echo "FONT=cyr-sun16" >> /etc/vconsole.conf
+echo "FONT=cyr-sun16" >> /mnt/etc/vconsole.conf
+echo "KEYMAP=ru" >> /mnt/etc/vconsole.conf
 
 # Заполнение skel
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotbashrc > /mnt/etc/skel/.bashrc
@@ -220,12 +221,3 @@ sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 #arch-chroot -u $MYUSER /mnt yaourt -S palemoon-bin --noconfirm
 
 echo "Все готово! Перезагрузись и кайфуй!"
-
-# Меняем имя компьютера (myhostname меняем на ваше):
-#hostnamectl set-hostname ThinkCentre
-#timedatectl set-timezone Europe/Moscow
-#timedatectl set-ntp true
-#hwclock --systohc --utc
-#localectl set-keymap ru
-#setfont cyr-sun16
-#localectl set-locale LANG="ru_RU.UTF-8"
