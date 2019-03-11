@@ -53,7 +53,7 @@ export LANG=ru_RU.UTF-8
 # 4 - /home
 
 # Отредактируй команды по разметке ниже или приготовь диск и примонтируй к /mnt сам после чего удали exit :)
-exit
+#exit
 
 if [[ $SYS == 'BIOS' ]]; then
 	echo "Подготовь разметку диска! После этого примонтируй к /mnt и убери exit"
@@ -82,10 +82,6 @@ sed -i '1 i\Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' /etc/pacm
 pacstrap -i /mnt base base-devel $UCODE --noconfirm
 # Для тех, кто устанавливает систему через Wi-Fi необходимо также установить пакеты netctl, dialog и wpa_supplicant
 pacstrap -i /mnt netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync --noconfirm
-# Установка загрузчика Grub
-if [[ $SYS == 'BIOS' ]]; then
-	arch-chroot /mnt pacman -S grub-bios --noconfirm
-fi
 
 # Дальнейшая настройка системы
 
@@ -93,7 +89,6 @@ fi
 genfstab -p /mnt >> /mnt/etc/fstab
 
 # Работаем в chroot
-# arch-chroot /mnt /bin/bash -c "$1"
 
 echo "Добавляем русскую локаль"
 sed -i 's/#ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/g' /mnt/etc/locale.gen
@@ -114,6 +109,7 @@ arch-chroot /mnt /bin/bash -c "mkinitcpio -p linux"
 
 echo "Установка загрузчика"
 if [[ $SYS == 'BIOS' ]]; then
+	arch-chroot /mnt pacman -S grub-bios --noconfirm
 	arch-chroot /mnt /bin/bash -c "grub-install /dev/sda"
 	arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
 fi
@@ -129,7 +125,6 @@ arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd"
 echo "$MYHOST" > /mnt/etc/hostname
 
 # Русифицируем нашу систему:
-
 echo "FONT=cyr-sun16" >> /etc/vconsole.conf
 
 # Заполнение skel
@@ -172,32 +167,18 @@ echo "Server = http://repo.archlinux.fr/x86_64" >> /mnt/etc/pacman.conf
 NUM=`awk '/\[multilib\]/{getline;getline;print NR}' /mnt/etc/pacman.conf`
 NUM1=`expr $NUM - 2`
 NUM2=`expr $NUM - 1`
-sed "$NUM1,$NUM2 s/^#//" /mnt/etc/pacman.conf
+sed -i "$NUM1,$NUM2 s/^#//" /mnt/etc/pacman.conf
 ###
 
 arch-chroot /mnt /bin/bash -c "pacman -Suy --noconfirm"
-arch-chroot /mnt /bin/bash -c "pacman -S --needed --noconfirm base-devel git wget yajl"
-
-# Устанавливаем и настраиваем sudo
-arch-chroot /mnt /bin/bash -c "pacman -S sudo --noconfirm"
 
 echo "В файле /etc/sudoers снимаем комментарий со строки # %wheel ALL=(ALL) ALL"
 sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g" /mnt/etc/sudoers
 
-arch-chroot /mnt /bin/bash -c "pacman -S xorg-server xorg-xinit mesa-libgl xterm mesa --noconfirm"
-
-# Parallels Desktop Testing
-#pacman -S xf86-video-vesa
-
 # Intel 
-arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-intel lib32-intel-dri gtk-engine-murrine --noconfirm"
-
-arch-chroot /mnt /bin/bash -c "pacman -S tint2 feh acpi mc nano cdparanoia cdrkit p7zip unrar zip openssh openbox obconf obmenu openbox-themes faenza-icon-theme tangerine-icon-theme pcmanfm file-roller gvfs gnome-menus ntfs-3g dosfstools exfat-utils xbindkeys networkmanager network-manager-applet hicolor-icon-theme gpicview volumeicon --noconfirm"
-
-curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/X11/xorg.conf.d/20-keyboard-layout.conf > /mnt/etc/X11/xorg.conf.d/20-keyboard-layout.conf
+arch-chroot /mnt /bin/bash -c "pacman -S sudo base-devel git wget yajl xorg-server xorg-xinit mesa-libgl xterm mesa lightdm lightdm-gtk-greeter xcompmgr xf86-video-intel lib32-intel-dri gtk-engine-murrine autoconf2.13 yasm gconf conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono gtk-engine-murrine cbatticon oblogout xf86-input-synaptics lxterminal transmission-gtk filezilla libva-intel-driver i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail fetchmail poppler lynx mutt terminator alsa-utils moc gmrun tint2 feh acpi mc nano cdparanoia cdrkit p7zip unrar zip openssh openbox obconf obmenu openbox-themes faenza-icon-theme tangerine-icon-theme pcmanfm file-roller gvfs gnome-menus ntfs-3g dosfstools exfat-utils xbindkeys networkmanager network-manager-applet hicolor-icon-theme gpicview volumeicon --needed --noconfirm"
 
 # LightDM
-arch-chroot /mnt /bin/bash -c "pacman -S lightdm lightdm-gtk-greeter --noconfirm"
 arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/lightdm/lightdm-gtk-greeter.conf > /mnt/etc/lightdm/lightdm-gtk-greeter.conf
 
@@ -211,8 +192,7 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/weather.py > /mnt/usr/local/bin/weather.py
 chmod +x /mnt/usr/local/bin/*
 
-arch-chroot /mnt /bin/bash -c "pacman -S xcompmgr conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono --noconfirm"
-arch-chroot /mnt /bin/bash -c "pacman -S cbatticon oblogout xf86-input-synaptics lxterminal transmission-gtk filezilla libva-intel-driver i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail fetchmail poppler lynx mutt terminator alsa-utils moc gmrun --noconfirm"
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/X11/xorg.conf.d/20-keyboard-layout.conf > /mnt/etc/X11/xorg.conf.d/20-keyboard-layout.conf
 
 # AUR
 echo "Установка yaourt"
@@ -225,7 +205,6 @@ arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/ya
 arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.xz --noconfirm"
 rm -dR /mnt/home/$MYUSER/yaourt/
 
-
 echo "Осталось немножко..."
 # Bunsen Themes
 arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/bunsen-themes-git.git /home/$MYUSER/bunsen-themes-git; cd /home/$MYUSER/bunsen-themes-git; makepkg"
@@ -236,7 +215,7 @@ rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 #yaourt -S links-g-directfb
-arch-chroot /mnt /bin/bash -c "gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC"
+arch-chroot /mnt gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC
 arch-chroot -u $MYUSER /mnt yaourt -S palemoon-bin --noconfirm
 
 echo "Все готово! Перезагрузись и кайфуй!"
