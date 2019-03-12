@@ -124,12 +124,11 @@ arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd"
 # Меняем имя компьютера (myhostname меняем на ваше):
 echo "$MYHOST" > /mnt/etc/hostname
 
-# Русифицируем нашу систему:
-arch-chroot /mnt /bin/bash -c "loadkeys ru"
-echo "FONT=cyr-sun16" >> /mnt/etc/vconsole.conf
-echo "KEYMAP=ru" >> /mnt/etc/vconsole.conf
+echo "Русифицируем нашу систему"
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/locale.conf > /mnt/etc/locale.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/vconsole.conf > /mnt/etc/vconsole.conf
 
-# Заполнение skel
+echo "Заполнение skel"
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotbashrc > /mnt/etc/skel/.bashrc
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconkyrc > /mnt/etc/skel/.conkyrc
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotfonts.conf > /mnt/etc/skel/.fonts.conf
