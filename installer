@@ -100,7 +100,7 @@ arch-chroot /mnt /bin/bash -c "reflector --score 120 -l 50 -f 20 --sort rate -c 
 
 echo "Создание mkinitcpio"
 #Добавим русскую локаль в консоль
-sed -i "s/block filesystems/block keymap filesystems/g" /mnt/etc/mkinitcpio.conf
+sed -i "s/block filesystems/block keymap consolefont filesystems/g" /mnt/etc/mkinitcpio.conf
 # Видеокарта Intel 
 sed -i "s/MODULES=()/MODULES=(i915)/g" /mnt/etc/mkinitcpio.conf
 # Видеокарта Nvidia
