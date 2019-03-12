@@ -79,11 +79,7 @@ fi
 sed -i '1 i\Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
  
 # Установим базовые пакеты системы.
-pacstrap -i /mnt base base-devel $UCODE --noconfirm
-# Для тех, кто устанавливает систему через Wi-Fi необходимо также установить пакеты netctl, dialog и wpa_supplicant
-pacstrap -i /mnt netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync --noconfirm
-
-# Дальнейшая настройка системы
+pacstrap -i /mnt base base-devel $UCODE netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync --noconfirm
 
 # Генерируем fstab, используя следующую команду:
 genfstab -p /mnt >> /mnt/etc/fstab
@@ -97,6 +93,13 @@ arch-chroot /mnt locale-gen
 
 echo "Сортировка pacman mirrorlist"
 arch-chroot /mnt /bin/bash -c "reflector --score 120 -l 50 -f 20 --sort rate -c RU --verbose --save /etc/pacman.d/mirrorlist"
+
+# Меняем имя компьютера (myhostname меняем на ваше):
+echo "$MYHOST" > /mnt/etc/hostname
+
+echo "Русифицируем нашу систему"
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/locale.conf > /mnt/etc/locale.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/vconsole.conf > /mnt/etc/vconsole.conf
 
 echo "Создание mkinitcpio"
 #Добавим русскую локаль в консоль
@@ -120,13 +123,6 @@ fi
 
 #Настраиваем сеть
 arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd"
-
-# Меняем имя компьютера (myhostname меняем на ваше):
-echo "$MYHOST" > /mnt/etc/hostname
-
-echo "Русифицируем нашу систему"
-curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/locale.conf > /mnt/etc/locale.conf
-curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/vconsole.conf > /mnt/etc/vconsole.conf
 
 echo "Заполнение skel"
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotbashrc > /mnt/etc/skel/.bashrc
