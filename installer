@@ -103,7 +103,7 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/vcons
 
 echo "Создание mkinitcpio"
 #Добавим русскую локаль в консоль
-sed -i "s/block filesystems/block keymap consolefont filesystems/g" /mnt/etc/mkinitcpio.conf
+sed -i "s/block filesystems/block keymap filesystems/g" /mnt/etc/mkinitcpio.conf
 # Видеокарта Intel 
 sed -i "s/MODULES=()/MODULES=(i915)/g" /mnt/etc/mkinitcpio.conf
 # Видеокарта Nvidia
