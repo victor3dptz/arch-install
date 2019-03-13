@@ -143,7 +143,9 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotc
 chmod +x /mnt/etc/skel/.config/dmenu/dmenu-bind.sh
 mkdir /mnt/etc/skel/.config/tint2
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/tint2/tint2rc > /mnt/etc/skel/.config/tint2/tint2rc
+mkdir /mnt/etc/skel/.config/lxterminal
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/lxterminal/lxterminal.conf > /mnt/etc/skel/.config/lxterminal/lxterminal.conf
+mkdir /mnt/etc/skel/.config/terminator
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/terminator/config > /mnt/etc/skel/.config/terminator/config
 
 echo "!!! Установка пароля для ROOT"
