@@ -180,6 +180,7 @@ arch-chroot /mnt /bin/bash -c "pacman -S sudo base-devel git wget yajl xorg-serv
 # LightDM
 arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/lightdm/lightdm-gtk-greeter.conf > /mnt/etc/lightdm/lightdm-gtk-greeter.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/oblogout.conf > /mnt/etc/oblogout.conf
 
 mkdir -p /mnt/usr/share/images
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/flowery.jpg > /mnt/usr/share/images/flowery.jpg
