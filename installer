@@ -143,6 +143,8 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotc
 chmod +x /mnt/etc/skel/.config/dmenu/dmenu-bind.sh
 mkdir /mnt/etc/skel/.config/tint2
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/tint2/tint2rc > /mnt/etc/skel/.config/tint2/tint2rc
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/lxterminal/lxterminal.conf > /mnt/etc/skel/.config/lxterminal/lxterminal.conf
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/terminator/config > /mnt/etc/skel/.config/terminator/config
 
 echo "!!! Установка пароля для ROOT"
 arch-chroot /mnt /bin/bash -c "passwd"
@@ -211,7 +213,8 @@ rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 # Вернем взад настройку pacman
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
-#yaourt -S links-g-directfb
+arch-chroot -u $MYUSER /mnt yaourt -S links-g-directfb --noconfirm
+
 #arch-chroot /mnt gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC
 #arch-chroot -u $MYUSER /mnt yaourt -S palemoon-bin --noconfirm
 
