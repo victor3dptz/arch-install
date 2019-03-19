@@ -149,6 +149,8 @@ mkdir /mnt/etc/skel/.config/lxterminal
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/lxterminal/lxterminal.conf > /mnt/etc/skel/.config/lxterminal/lxterminal.conf
 mkdir /mnt/etc/skel/.config/terminator
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/terminator/config > /mnt/etc/skel/.config/terminator/config
+mkdir /mnt/etc/skel/.config/volumeicon
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/volumeicon/volumeicon > /mnt/etc/skel/.config/volumeicon/volumeicon
 
 echo "!!! Установка пароля для ROOT"
 arch-chroot /mnt /bin/bash -c "passwd"
