@@ -4,8 +4,6 @@ ARCH Linux simple install script
 # WARNING #
 Careful  - it's destructive!!!
 
-# Версия 1
-файлы arch1.sh - arch4.sh запускать по очереди
+Предварительно сделай разметку диска и примонтируй корень к /mnt
 
-# Версия 2
-файл installer - тестируется
+Запусти файл *installer* - он сделает все сам)))
