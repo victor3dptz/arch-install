@@ -8,6 +8,7 @@ echo "Quick and dirty install of awesome Arch Linux"
 echo "Before you START, do partitioning and mount root filesystem to /mnt"
 read -p "Let the magic begin..."
 
+set -xe
 
 system_identify()
 {
