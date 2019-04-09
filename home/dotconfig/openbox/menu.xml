@@ -60,10 +60,10 @@
 	<menu id="apps-net-menu" label="Internet">
 		<item label="Inox">
 			<action name="Execute">
-				<command>inox</command>
+				<command>chromium</command>
 				<startupnotify>
 					<enabled>yes</enabled>
-					<wmclass>Inox</wmclass>
+					<wmclass>Ungoogled Chromium</wmclass>
 				</startupnotify>
 			</action>
 		</item>
