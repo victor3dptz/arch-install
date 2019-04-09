@@ -58,7 +58,7 @@
 		</item>
 	</menu>
 	<menu id="apps-net-menu" label="Internet">
-		<item label="Inox">
+		<item label="Ungoogled Chromium">
 			<action name="Execute">
 				<command>chromium</command>
 				<startupnotify>
