@@ -1,0 +1,25 @@
+# old unread messages
+color index green default "~O"
+
+# new unread messages
+color index brightgreen default "~N"
+
+# messages to me
+color index cyan default "~p"
+color index brightcyan default "~p~O"
+color index brightcyan default "~p~N"
+
+# messages from me
+color index yellow default "~P"
+
+# tagged messages
+color index red default "~T"
+
+# messages about to be deleted
+color index brightyellow default "~D"
+
+# message displaying settings
+color hdrdefault green default
+color header brightgreen default ^Subject:
+color quoted cyan default
+color signature red default
