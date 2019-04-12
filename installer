@@ -138,8 +138,18 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotb
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconkyrc > /mnt/etc/skel/.conkyrc
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotfonts.conf > /mnt/etc/skel/.fonts.conf
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotgtkrc-2.0 > /mnt/etc/skel/.gtkrc-2.0
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotprocmailrc > /mnt/etc/skel/.procmailrc
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotxsession > /mnt/etc/skel/.xsession
 mkdir /mnt/etc/skel/.moc
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotmoc/config > /mnt/etc/skel/.moc/config
+mkdir /mnt/etc/skel/.i3
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/doti3/config > /mnt/etc/skel/.i3/config
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/doti3/conky_maia > /mnt/etc/skel/.i3/conky_maia
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/doti3/shortcuts_maia > /mnt/etc/skel/.i3/shortcuts_maia
+mkdir /mnt/etc/skel/.mutt
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotmutt/dotgpg.rc > /mnt/etc/skel/.mutt/.gpg.rc
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotmutt/mailcap > /mnt/etc/skel/.mutt/mailcap
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotmutt/original-colors.muttrc > /mnt/etc/skel/.mutt/original-colors.muttrc
 mkdir -p /mnt/etc/skel/.config/openbox
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/openbox/autostart > /mnt/etc/skel/.config/openbox/autostart
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/openbox/environment > /mnt/etc/skel/.config/openbox/environment
@@ -200,6 +210,7 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/passmenu > /mnt/usr/local/bin/passmenu
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/ssh_menu.sh > /mnt/usr/local/bin/ssh_menu.sh
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/weather.py > /mnt/usr/local/bin/weather.py
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/i3exit > /mnt/usr/local/bin/i3exit
 chmod +x /mnt/usr/local/bin/*
 
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/X11/xorg.conf.d/00-keyboard.conf > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
