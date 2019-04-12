@@ -1,5 +1,0 @@
-#!/bin/bash
-
-cmd=$1
-result=`sed "s/[,].*//" ~/.ssh/known_hosts | sort -u | dmenu -fn 'xos4 Terminus-8' -p ssh`
-exec $cmd $result
