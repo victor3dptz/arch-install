@@ -86,7 +86,7 @@ pacman-key --populate archlinux
 pacman-key --refresh-keys
  
 # Установим базовые пакеты системы.
-pacstrap -i /mnt base base-devel $UCODE netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync sudo git wget yajl xorg-server xorg-xinit gtk-engine-murrine mesa-libgl xterm mesa lightdm lightdm-gtk-greeter xcompmgr xf86-video-intel autoconf2.13 yasm gconf conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono gtk-engine-murrine cbatticon oblogout xf86-input-synaptics lxterminal transmission-gtk filezilla libva-intel-driver i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail poppler lynx mutt terminator alsa-utils moc gmrun tint2 feh acpi mc nano cdparanoia cdrkit p7zip unrar zip openssh openbox obconf obmenu faenza-icon-theme tangerine-icon-theme pcmanfm file-roller gvfs gnome-menus ntfs-3g dosfstools exfat-utils xbindkeys networkmanager network-manager-applet hicolor-icon-theme gpicview volumeicon truecrypt keepassx ranger --noconfirm
+pacstrap -i /mnt base base-devel $UCODE netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync sudo git wget yajl xorg-server xorg-xinit gtk-engine-murrine mesa-libgl xterm mesa lightdm lightdm-gtk-greeter xcompmgr xf86-video-intel autoconf2.13 yasm gconf conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono gtk-engine-murrine cbatticon oblogout xf86-input-synaptics lxterminal transmission-gtk filezilla libva-intel-driver i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail poppler lynx mutt terminator alsa-utils moc gmrun tint2 feh acpi mc nano cdparanoia cdrkit p7zip unrar zip openssh openbox obconf obmenu faenza-icon-theme tangerine-icon-theme pcmanfm file-roller gvfs gnome-menus ntfs-3g dosfstools exfat-utils xbindkeys networkmanager network-manager-applet hicolor-icon-theme gpicview volumeicon truecrypt keepassx ranger i3-gaps i3lock i3status xorg-xkill terminus-font --noconfirm
 # удалены
 # lib32-intel-dri openbox-themes
 
@@ -224,11 +224,7 @@ rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 # Вернем взад настройку pacman
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
-arch-chroot -u $MYUSER /mnt yaourt -S links-g-directfb --noconfirm
-
-arch-chroot -u $MYUSER /mnt yaourt -S fetchmail --noconfirm
-
-arch-chroot -u $MYUSER /mnt yaourt -S ungoogled-chromium-bin --noconfirm
+arch-chroot -u $MYUSER /mnt yaourt -S links-g-directfb fetchmail i3-scrot ttf-paratype ungoogled-chromium-bin twmn-git --noconfirm
 
 #arch-chroot /mnt gpg --keyserver=keyserver.ubuntu.com --recv-keys 865E6C87C65285EC
 #arch-chroot -u $MYUSER /mnt yaourt -S palemoon-bin --noconfirm
