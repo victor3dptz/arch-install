@@ -51,7 +51,7 @@ exec --no-startup-id cbatticon
 # Start Applications
 bindsym $mod+F2 exec palemoon
 bindsym $mod+F3 exec pcmanfm
-bindsym $mod+i exec --no-startup-id links -g
+bindsym $mod+i exec --no-startup-id xlinks -g
 bindsym $mod+o exec --no-startup-id lxterminal -e 'mutt'
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
