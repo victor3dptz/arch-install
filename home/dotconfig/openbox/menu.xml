@@ -51,9 +51,9 @@
 				<command>truecrypt</command>
 			</action>
 		</item>
-		<item label="KeePassX">
+		<item label="KeePassXC">
 			<action name="Execute">
-				<command>keepassx</command>
+				<command>keepassxc</command>
 			</action>
 		</item>
 	</menu>
