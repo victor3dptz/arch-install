@@ -58,12 +58,12 @@
 		</item>
 	</menu>
 	<menu id="apps-net-menu" label="Internet">
-		<item label="Ungoogled Chromium">
+		<item label="Mozilla Firefox">
 			<action name="Execute">
-				<command>chromium</command>
+				<command>firefox</command>
 				<startupnotify>
 					<enabled>yes</enabled>
-					<wmclass>Ungoogled Chromium</wmclass>
+					<wmclass>Mozilla Firefox</wmclass>
 				</startupnotify>
 			</action>
 		</item>
