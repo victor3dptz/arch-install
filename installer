@@ -204,6 +204,14 @@ arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/lightdm/lightdm-gtk-greeter.conf > /mnt/etc/lightdm/lightdm-gtk-greeter.conf
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/oblogout.conf > /mnt/etc/oblogout.conf
 
+mkdir -p /mnt/usr/share/icons
+curl https://github.com/victor3dptz/arch-install/raw/master/usr/share/icons/bunsen-lightdm.tar.gz > /mnt/usr/share/icons/bunsen-lightdm.tar.gz
+tar xvfz /mnt/usr/share/icons/bunsen-lightdm.tar.gz
+rm -f /mnt/usr/share/icons/bunsen-lightdm.tar.gz
+curl https://github.com/victor3dptz/arch-install/raw/master/usr/share/themes/bunsen-lightdm.tar.gz > /mnt/usr/share/themes/bunsen-lightdm.tar.gz
+tar xvfz /mnt/usr/share/themes/bunsen-lightdm.tar.gz
+rm -f /mnt/usr/share/themes/bunsen-lightdm.tar.gz
+
 mkdir -p /mnt/usr/share/images
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/flowery.jpg > /mnt/usr/share/images/flowery.jpg
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/linen.png > /mnt/usr/share/images/linen.png
