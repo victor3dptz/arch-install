@@ -3,7 +3,11 @@ ARCH Linux simple install script
 
 You'll get Arch Linux with Openbox, tint2. Inspired by [Bunsenlabs Linux](https://www.bunsenlabs.org).
 
-![Arch Installer](https://imgur.com/oNkxVMi.png)
+![Openbox](https://i.imgur.com/HxfQLnB.png)
+
+Plus, you'll get i3 desktop. Inspired By [Manjaro Linux i3 Edition](https://manjaro.org).
+
+![i3](https://i.imgur.com/N729mKg.png)
 
 # WARNING #
 Careful  - it's destructive!!! 
