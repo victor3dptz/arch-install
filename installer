@@ -203,10 +203,10 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/light
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/oblogout.conf > /mnt/etc/oblogout.conf
 
 mkdir -p /mnt/usr/share/icons
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/share/icons/bunsen-lightdm.tar.gz > /mnt/usr/share/icons/bunsen-lightdm.tar.gz
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/icons/bunsen-lightdm.tar.gz > /mnt/usr/share/icons/bunsen-lightdm.tar.gz
 tar xvfz /mnt/usr/share/icons/bunsen-lightdm.tar.gz
 rm -f /mnt/usr/share/icons/bunsen-lightdm.tar.gz
-curl https://github.com/victor3dptz/arch-install/raw/master/usr/share/themes/bunsen-lightdm.tar.gz > /mnt/usr/share/themes/bunsen-lightdm.tar.gz
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/themes/bunsen-lightdm.tar.gz > /mnt/usr/share/themes/bunsen-lightdm.tar.gz
 tar xvfz /mnt/usr/share/themes/bunsen-lightdm.tar.gz
 rm -f /mnt/usr/share/themes/bunsen-lightdm.tar.gz
 
