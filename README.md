@@ -5,7 +5,7 @@ You'll get Arch Linux with Openbox, tint2. Inspired by [Bunsenlabs Linux](https:
 
 ![Openbox](https://i.imgur.com/HxfQLnB.png)
 
-Plus, you'll get i3 desktop. Inspired By [Manjaro Linux i3 Edition](https://manjaro.org).
+Plus, you'll get i3 desktop. Inspired by [Manjaro Linux i3 Edition](https://manjaro.org).
 
 ![i3](https://i.imgur.com/N729mKg.png)
 
