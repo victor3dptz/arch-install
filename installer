@@ -3,6 +3,12 @@
 echo "Quick and dirty install of awesome Arch Linux"
 echo "Before you START, do partitioning and mount root filesystem to /mnt"
 read -p "Let the magic begin..."
+MOUNTED=$(mount | grep /mnt)
+if [[ $MOUNTED == '' ]]; then
+echo "Install root isn't mounted to /mnt"
+exit
+fi
+
 while [[ $MYHOST1 == '' ]]
 do
     read -p "Hostname: " MYHOST1
