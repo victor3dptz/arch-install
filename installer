@@ -290,6 +290,6 @@ rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 set -xe
-arch-chroot -u $MYUSER /mnt yaourt -S fetchmail obmenu i3-scrot ttf-paratype openbox-themes adeos-oblogout-git ttf-ms-fonts twmn-git --noconfirm
+arch-chroot -u $MYUSER /mnt yaourt -S fetchmail obmenu i3-scrot ttf-paratype openbox-themes adeos-oblogout-git ttf-ms-fonts --noconfirm
 
 echo "Все готово! Перезагрузись и кайфуй!"
