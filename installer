@@ -243,8 +243,9 @@ sed -i "$NUM1,$NUM2 s/^#//" /mnt/etc/pacman.conf
 
 arch-chroot /mnt /bin/bash -c "pacman -Suy --noconfirm"
 
-echo "В файле /etc/sudoers снимаем комментарий со строки # %wheel ALL=(ALL) ALL"
-sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g" /mnt/etc/sudoers
+echo "Настройка sudo на время установки"
+#sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g" /mnt/etc/sudoers
+sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /mnt/etc/sudoers
 
 # LightDM
 arch-chroot /mnt /bin/bash -c "systemctl enable lightdm"
@@ -291,5 +292,9 @@ sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 set -xe
 arch-chroot -u $MYUSER /mnt yaourt -S fetchmail obmenu i3-scrot ttf-paratype openbox-themes adeos-oblogout-git ttf-ms-fonts --noconfirm
+
+echo "Окончательная настройка sudo"
+sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g" /mnt/etc/sudoers
+sed -i "s/%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/g" /mnt/etc/sudoers
 
 echo "Все готово! Перезагрузись и кайфуй!"
