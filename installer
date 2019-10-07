@@ -271,18 +271,20 @@ chmod +x /mnt/usr/local/bin/*
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/X11/xorg.conf.d/00-keyboard.conf > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
 
 # AUR
-#echo "Установка yaourt"
 # Хак чтобы работал pacman в chroot
 sed -i "s/CheckSpace/#CheckSpace/g" /mnt/etc/pacman.conf
-#arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/package-query.git /home/$MYUSER/package-query; cd /home/$MYUSER/package-query; makepkg"
-#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/package-query/package-query*.xz --noconfirm"
-#rm -dR /mnt/home/$MYUSER/package-query/
-#arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yaourt.git /home/$MYUSER/yaourt; cd /home/$MYUSER/yaourt/; makepkg"
-#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.xz --noconfirm"
-#rm -dR /mnt/home/$MYUSER/yaourt/
-echo "Установка yay"
-arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yay.git /home/$MYUSER/yay; cd /home/$MYUSER/yay; makepkg -si"
-rm -dR /mnt/home/$MYUSER/yay/
+
+echo "Установка yaourt"
+arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/package-query.git /home/$MYUSER/package-query; cd /home/$MYUSER/package-query; makepkg"
+arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/package-query/package-query*.xz --noconfirm"
+rm -dR /mnt/home/$MYUSER/package-query/
+arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yaourt.git /home/$MYUSER/yaourt; cd /home/$MYUSER/yaourt/; makepkg"
+arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.xz --noconfirm"
+rm -dR /mnt/home/$MYUSER/yaourt/
+
+#echo "Установка yay" (not working)
+#arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yay.git /home/$MYUSER/yay; cd /home/$MYUSER/yay; makepkg -si"
+#rm -dR /mnt/home/$MYUSER/yay/
 
 echo "Осталось немножко..."
 # Bunsen Themes
@@ -294,7 +296,7 @@ rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 set -xe
-arch-chroot -u $MYUSER /mnt yay -S fetchmail obmenu3 i3-scrot ttf-paratype openbox-themes adeos-oblogout-git ttf-ms-fonts --noconfirm
+arch-chroot -u $MYUSER /mnt yaourt -S fetchmail obmenu3 i3-scrot ttf-paratype openbox-themes adeos-oblogout-git ttf-ms-fonts --noconfirm
 
 echo "Окончательная настройка sudo"
 sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g" /mnt/etc/sudoers
