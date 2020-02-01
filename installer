@@ -283,21 +283,17 @@ arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/ya
 arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.xz --noconfirm"
 rm -dR /mnt/home/$MYUSER/yaourt/
 
-#echo "Установка yay" (not working)
-#arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yay.git /home/$MYUSER/yay; cd /home/$MYUSER/yay; makepkg -si"
-#rm -dR /mnt/home/$MYUSER/yay/
-
 echo "Осталось немножко..."
 # Bunsen Themes
-arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/bunsen-themes-git.git /home/$MYUSER/bunsen-themes-git; cd /home/$MYUSER/bunsen-themes-git; makepkg"
-arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/bunsen-themes-git/bunsen-themes-git*.xz --noconfirm"
-rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
+#arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/bunsen-themes-git.git /home/$MYUSER/bunsen-themes-git; cd /home/$MYUSER/bunsen-themes-git; makepkg"
+#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/bunsen-themes-git/bunsen-themes-git*.xz --noconfirm"
+#rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 
 # Вернем взад настройку pacman
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 set -xe
-arch-chroot -u $MYUSER /mnt yaourt -S obmenu3 i3-scrot ttf-paratype openbox-themes adeos-oblogout-git ttf-ms-fonts --noconfirm
+arch-chroot -u $MYUSER /mnt yaourt -S obmenu3 i3-scrot ttf-paratype openbox-themes adeos-oblogout-git ttf-ms-fonts yay bunsen-themes-git --noconfirm
 # fetchmail remove (replace by getmail)
 echo "Окончательная настройка sudo"
 sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g" /mnt/etc/sudoers
