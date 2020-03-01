@@ -293,8 +293,9 @@ echo "Осталось немножко..."
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 set -xe
-arch-chroot -u $MYUSER /mnt yaourt -S obmenu3 i3-scrot ttf-paratype openbox-themes tangerine-icon-theme oblogout adeos-oblogout-git ttf-ms-fonts yay bunsen-themes-git --noconfirm
+arch-chroot -u $MYUSER /mnt yaourt -S obmenu3 i3-scrot ttf-paratype openbox-themes tangerine-icon-theme oblogout adeos-oblogout-git ttf-ms-fonts bunsen-themes-git --noconfirm
 # fetchmail remove (replace by getmail)
+# yay install later
 echo "Окончательная настройка sudo"
 sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g" /mnt/etc/sudoers
 sed -i "s/%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/g" /mnt/etc/sudoers
