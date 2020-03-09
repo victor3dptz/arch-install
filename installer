@@ -308,10 +308,11 @@ sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 set -xe
 arch-chroot -u $MYUSER /mnt yaourt -S obmenu3 i3-scrot ttf-paratype openbox-themes tangerine-icon-theme oblogout adeos-oblogout-git ttf-ms-fonts bunsen-themes-git --noconfirm
 if [[ $MAC == 'YES' ]]; then
-arch-chroot -u $MYUSER /mnt yaourt -S mbpfan-git --noconfirm
+arch-chroot -u $MYUSER /mnt yaourt -S mbpfan-git xf86-input-mtrack-git pommed-light acpilight hfsprogs --noconfirm
 arch-chroot /mnt /bin/bash -c "systemctl enable mbpfan.service"
-arch-chroot -u $MYUSER /mnt yaourt -S nvidia-340xx-dkms nvidia-bl-dkms --noconfirm
-arch-chroot /mnt /bin/bash -c "nvidia-xconfig"
+arch-chroot /mnt /bin/bash -c "systemctl enable pommed.service"
+#arch-chroot -u $MYUSER /mnt yaourt -S nvidia-340xx-dkms nvidia-bl-dkms --noconfirm
+#arch-chroot /mnt /bin/bash -c "nvidia-xconfig"
 else
 echo "Не мак :)"
 fi
