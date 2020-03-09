@@ -131,6 +131,12 @@ sed -i "s/block filesystems/block keymap filesystems/g" /mnt/etc/mkinitcpio.conf
 sed -i "s/MODULES=()/MODULES=(i915)/g" /mnt/etc/mkinitcpio.conf
 # Видеокарта Nvidia
 #sed -i 's/MODULES=() /MODULES=(nouveau)/g' /mnt/etc/mkinitcpio.conf
+if [[ $MAC == 'YES' ]]; then
+echo "coretemp" >> /mnt/etc/modules
+echo "applesmc" >> /mnt/etc/modules
+else
+echo "Не мак :)"
+fi
 arch-chroot /mnt /bin/bash -c "mkinitcpio -p linux"
 
 echo "Установка загрузчика"
