@@ -85,7 +85,6 @@ else
 	# mount /dev/sda4 /mnt/home
 	# swapon /dev/sda3
 fi
-exit
 
 # Выбираем ближайшее зеркало для pacman
 sed -i '1 i\Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
@@ -98,10 +97,14 @@ set -xe
  
 # Установим базовые пакеты системы.
 pacstrap -i /mnt base base-devel linux linux-firmware $UCODE netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync sudo git wget yajl xorg-server xorg-xinit gtk-engine-murrine mesa-libgl xterm mesa lightdm lightdm-gtk-greeter xcompmgr autoconf2.13 yasm conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono gtk-engine-murrine cbatticon xf86-input-synaptics lxterminal transmission-gtk filezilla i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail poppler lynx mutt terminator alsa-utils moc gmrun tint2 feh acpi mc nano cdparanoia cdrkit p7zip unrar zip openssh openbox obconf faenza-icon-theme pcmanfm file-roller gvfs gnome-menus ntfs-3g dosfstools exfat-utils xbindkeys networkmanager network-manager-applet hicolor-icon-theme gpicview volumeicon truecrypt keepassxc ranger i3-wm i3lock i3blocks i3status xorg-xkill terminus-font gtk-theme-switch2 redshift surf zathura links atool bind-tools cmake compton cronie f2fs-tools ffmpegthumbnailer gpart gparted gperf gsimplecal libreoffice-fresh libreoffice-fresh-ru mediainfo mtools mupdf namcap ncdu nmap newsboat ntp odt2txt pass pkgfile qt5ct rpmextract ttf-font-awesome udftools w3m weechat whois youtube-dl firefox-i18n-ru firefox firefox-adblock-plus gsfonts getmail dhcpcd netctl nano man b43-fwcutter broadcom-wl ndiswrapper r8168 --noconfirm
-# Intel видеокарта
-#pacstrap -i /mnt xf86-video-intel libva-intel-driver --noconfirm
+
+if [[ $MAC == 'YES' ]]; then
 # Nouveau видеокарта
-pacstrap -i /mnt xf86-video-nouveau --noconfirm
+pacstrap -i /mnt xf86-video-nouveau xorg --noconfirm
+else
+# Intel видеокарта
+pacstrap -i /mnt xf86-video-intel libva-intel-driver --noconfirm
+fi
 set +xe
 
 # Генерируем fstab, используя следующую команду:
@@ -133,10 +136,6 @@ sed -i "s/block filesystems/block keymap filesystems/g" /mnt/etc/mkinitcpio.conf
 #sed -i 's/MODULES=() /MODULES=(nouveau)/g' /mnt/etc/mkinitcpio.conf
 if [[ $MAC == 'YES' ]]; then
 sed -i 's/MODULES=() /MODULES=(nouveau coretemp applesmc)/g' /mnt/etc/mkinitcpio.conf
-#echo "coretemp" >> /mnt/etc/modules
-#echo "applesmc" >> /mnt/etc/modules
-else
-echo "Не мак :)"
 fi
 arch-chroot /mnt /bin/bash -c "mkinitcpio -p linux"
 
@@ -309,13 +308,11 @@ sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 set -xe
 arch-chroot -u $MYUSER /mnt yaourt -S obmenu3 i3-scrot ttf-paratype openbox-themes tangerine-icon-theme oblogout adeos-oblogout-git ttf-ms-fonts bunsen-themes-git --noconfirm
 if [[ $MAC == 'YES' ]]; then
-#arch-chroot -u $MYUSER /mnt yaourt -S mbpfan-git xf86-input-mtrack-git pommed-light acpilight hfsprogs --noconfirm
-#arch-chroot /mnt /bin/bash -c "systemctl enable mbpfan.service"
-#arch-chroot /mnt /bin/bash -c "systemctl enable pommed.service"
+arch-chroot -u $MYUSER /mnt yaourt -S mbpfan-git pommed-light hfsprogs --noconfirm
+arch-chroot /mnt /bin/bash -c "systemctl enable mbpfan.service"
+arch-chroot /mnt /bin/bash -c "systemctl enable pommed.service"
 #arch-chroot -u $MYUSER /mnt yaourt -S nvidia-340xx-dkms nvidia-bl-dkms --noconfirm
 #arch-chroot /mnt /bin/bash -c "nvidia-xconfig"
-else
-echo "Не мак :)"
 fi
 # yay install later
 echo "Окончательная настройка sudo"
