@@ -308,9 +308,10 @@ sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 set -xe
 arch-chroot -u $MYUSER /mnt yaourt -S obmenu3 i3-scrot ttf-paratype openbox-themes tangerine-icon-theme oblogout adeos-oblogout-git ttf-ms-fonts bunsen-themes-git --noconfirm
 if [[ $MAC == 'YES' ]]; then
-arch-chroot -u $MYUSER /mnt yaourt -S mbpfan-git pommed-light hfsprogs --noconfirm
+arch-chroot -u $MYUSER /mnt yaourt -S mbpfan-git pommed-light hfsprogs thermald --noconfirm
 arch-chroot /mnt /bin/bash -c "systemctl enable mbpfan.service"
 arch-chroot /mnt /bin/bash -c "systemctl enable pommed.service"
+arch-chroot /mnt /bin/bash -c "systemctl enable thermald.service"
 #arch-chroot -u $MYUSER /mnt yaourt -S nvidia-340xx-dkms nvidia-bl-dkms --noconfirm
 #arch-chroot /mnt /bin/bash -c "nvidia-xconfig"
 fi
