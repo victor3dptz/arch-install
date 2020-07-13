@@ -34,7 +34,8 @@ compton -b &
 tint2 &
 (sleep 10; conky) &
 
-(sleep 2; feh --bg-scale /usr/share/images/flowery.jpg) &
+#(sleep 2; feh --bg-scale /usr/share/images/flowery.jpg) &
+(sleep 2; nitrogen --restore) &
 
 #nm-applet --sm-disable &
 volumeicon &

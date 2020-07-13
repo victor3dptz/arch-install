@@ -96,7 +96,7 @@ pacman-key --refresh-keys
 set -xe
  
 # Установим базовые пакеты системы.
-pacstrap -i /mnt base base-devel linux linux-firmware $UCODE netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync sudo git wget yajl xorg-server xorg-xinit gtk-engine-murrine mesa-libgl xterm mesa lightdm lightdm-gtk-greeter xcompmgr autoconf2.13 yasm conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono gtk-engine-murrine cbatticon xf86-input-synaptics lxterminal transmission-gtk filezilla i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail poppler lynx mutt terminator alsa-utils moc gmrun tint2 feh acpi mc nano cdparanoia cdrkit p7zip unrar zip openssh openbox obconf faenza-icon-theme pcmanfm file-roller gvfs gnome-menus ntfs-3g dosfstools exfat-utils networkmanager network-manager-applet hicolor-icon-theme gpicview volumeicon truecrypt keepassxc ranger i3-wm i3lock i3blocks i3status xorg-xkill terminus-font redshift zathura links atool bind-tools cmake compton cronie f2fs-tools ffmpegthumbnailer gpart gparted gperf gsimplecal libreoffice-fresh libreoffice-fresh-ru mediainfo mtools mupdf namcap ncdu nmap newsboat ntp odt2txt pass pkgfile qt5ct rpmextract ttf-font-awesome udftools w3m weechat whois youtube-dl firefox-i18n-ru firefox firefox-adblock-plus gsfonts dhcpcd netctl nano man b43-fwcutter broadcom-wl ndiswrapper r8168 --noconfirm
+pacstrap -i /mnt base base-devel linux linux-firmware $UCODE netctl dialog wpa_supplicant wget reflector nfs-utils net-tools rsync sudo git wget yajl xorg-server xorg-xinit gtk-engine-murrine mesa-libgl xterm mesa lightdm lightdm-gtk-greeter xcompmgr autoconf2.13 yasm conky lxappearance geany ttf-liberation ttf-dejavu opendesktop-fonts ttf-bitstream-vera ttf-arphic-ukai ttf-arphic-uming ttf-hanazono gtk-engine-murrine cbatticon xf86-input-synaptics lxterminal transmission-gtk filezilla i3lock scrot imagemagick xautolock mcabber mpv htop dmenu xfce4-screenshooter pulseaudio pulseaudio-alsa procmail poppler lynx mutt terminator alsa-utils moc gmrun tint2 feh acpi mc nano cdparanoia cdrkit p7zip unrar zip openssh openbox obconf faenza-icon-theme pcmanfm file-roller gvfs gnome-menus ntfs-3g dosfstools exfat-utils networkmanager network-manager-applet hicolor-icon-theme gpicview volumeicon truecrypt keepassxc ranger i3-wm i3lock i3blocks i3status xorg-xkill terminus-font redshift zathura links atool bind-tools cmake compton cronie f2fs-tools ffmpegthumbnailer gpart gparted gperf gsimplecal libreoffice-fresh libreoffice-fresh-ru mediainfo mtools mupdf namcap ncdu nmap newsboat ntp odt2txt pass pkgfile qt5ct rpmextract ttf-font-awesome udftools w3m weechat whois youtube-dl firefox-i18n-ru firefox firefox-adblock-plus gsfonts dhcpcd netctl nano man b43-fwcutter broadcom-wl ndiswrapper r8168 nitrogen --noconfirm
 
 if [[ $MAC == 'YES' ]]; then
 # Nouveau видеокарта
@@ -182,6 +182,9 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotc
 mkdir /mnt/etc/skel/.config/dmenu
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/dmenu/dmenu-bind.sh > /mnt/etc/skel/.config/dmenu/dmenu-bind.sh
 chmod +x /mnt/etc/skel/.config/dmenu/dmenu-bind.sh
+mkdir /mnt/etc/skel/.config/nitrogen
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/nitrogen/bg-saved.cfg > /mnt/etc/skel/.config/nitrogen/bg-saved.cfg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/nitrogen/nitrogen.cfg > /mnt/etc/skel/.config/nitrogen/nitrogen.cfg
 mkdir /mnt/etc/skel/.config/tint2
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/home/dotconfig/tint2/tint2rc > /mnt/etc/skel/.config/tint2/tint2rc
 mkdir /mnt/etc/skel/.config/lxterminal
@@ -277,6 +280,18 @@ rm -f /mnt/usr/share/themes/bunsen-lightdm.tar.gz
 mkdir -p /mnt/usr/share/images
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/flowery.jpg > /mnt/usr/share/images/flowery.jpg
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/linen.png > /mnt/usr/share/images/linen.png
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/BahamasAerial.jpg > /mnt/usr/share/images/BahamasAerial.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/BluePond.jpg > /mnt/usr/share/images/BluePond.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/ColorBurst1.jpg > /mnt/usr/share/images/ColorBurst1.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/ColorBurst2.jpg > /mnt/usr/share/images/ColorBurst2.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/ColorBurst3.jpg > /mnt/usr/share/images/ColorBurst3.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/ElCapitan2.jpg > /mnt/usr/share/images/ElCapitan2.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/HighSierra.jpg > /mnt/usr/share/images/HighSierra.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/InkCloud.jpg > /mnt/usr/share/images/InkCloud.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/Lake.jpg > /mnt/usr/share/images/Lake.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/MilkyWay.jpg > /mnt/usr/share/images/MilkyWay.jpg
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/share/images/Wave.jpg > /mnt/usr/share/images/Wave.jpg
+
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/i3lock.sh > /mnt/usr/local/bin/i3lock.sh
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/mutt.sh > /mnt/usr/local/bin/mutt.sh
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/usr/local/bin/i3exit > /mnt/usr/local/bin/i3exit
