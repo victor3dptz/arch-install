@@ -45,6 +45,6 @@ xmodmap ~/.Xmodmap &
 
 #Авто цветовая калибровка экрана в зависимости от времени
 redshift &
-
+udiskie -t &
 # Dropbox
 (sleep 60s; dropbox) &
