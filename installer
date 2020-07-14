@@ -316,8 +316,8 @@ echo "Установка yaourt"
 #arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/package-query.git /home/$MYUSER/package-query; cd /home/$MYUSER/package-query; makepkg"
 #arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/package-query/package-query*.xz --noconfirm"
 #rm -dR /mnt/home/$MYUSER/package-query/
-arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yaourt.git /home/$MYUSER/yaourt; cd /home/$MYUSER/yaourt/; makepkg -s"
-arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.xz --noconfirm"
+arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yaourt.git /home/$MYUSER/yaourt; cd /home/$MYUSER/yaourt/; makepkg -s --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.zst --noconfirm"
 rm -dR /mnt/home/$MYUSER/yaourt/
 
 echo "Осталось немножко..."
