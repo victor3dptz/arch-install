@@ -313,10 +313,10 @@ curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/etc/X11/x
 sed -i "s/CheckSpace/#CheckSpace/g" /mnt/etc/pacman.conf
 
 echo "Установка yaourt"
-arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/package-query.git /home/$MYUSER/package-query; cd /home/$MYUSER/package-query; makepkg"
-arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/package-query/package-query*.xz --noconfirm"
-rm -dR /mnt/home/$MYUSER/package-query/
-arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yaourt.git /home/$MYUSER/yaourt; cd /home/$MYUSER/yaourt/; makepkg"
+#arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/package-query.git /home/$MYUSER/package-query; cd /home/$MYUSER/package-query; makepkg"
+#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/package-query/package-query*.xz --noconfirm"
+#rm -dR /mnt/home/$MYUSER/package-query/
+arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yaourt.git /home/$MYUSER/yaourt; cd /home/$MYUSER/yaourt/; makepkg -s"
 arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.xz --noconfirm"
 rm -dR /mnt/home/$MYUSER/yaourt/
 
