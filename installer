@@ -197,7 +197,6 @@ do
         echo "User's password can't be empty!"
     fi
 done
-echo -e "$USERPASS1\n$USERPASS2" | arch-chroot /mnt /bin/bash -c "passwd $MYUSER"
 	
 # Настраиваем временную зону:
 arch-chroot /mnt /bin/bash -c "ln -svf /usr/share/zoneinfo/Europe/Simferopol /etc/localtime"
