@@ -198,9 +198,6 @@ do
     fi
 done
 echo -e "$USERPASS1\n$USERPASS2" | arch-chroot /mnt /bin/bash -c "passwd $MYUSER"
-
-#Добавим ему информацию GECOS:
-arch-chroot /mnt /bin/bash -c "chfn victor3d"
 	
 # Настраиваем временную зону:
 arch-chroot /mnt /bin/bash -c "ln -svf /usr/share/zoneinfo/Europe/Simferopol /etc/localtime"
@@ -264,6 +261,13 @@ fi
 echo "Окончательная настройка sudo"
 sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g" /mnt/etc/sudoers
 sed -i "s/%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/g" /mnt/etc/sudoers
+
+echo "Настройка пользователя: $MYUSER"
+arch-chroot /mnt /bin/bash -c "userdel -r $MYUSER"
+arch-chroot /mnt /bin/bash -c "useradd -m -k /etc/skel -g users -G audio,games,lp,optical,power,scanner,storage,video,wheel -s /bin/bash $MYUSER"
+echo -e "$USERPASS1\n$USERPASS2" | arch-chroot /mnt /bin/bash -c "passwd $MYUSER"
+#Добавим ему информацию GECOS:
+arch-chroot /mnt /bin/bash -c "chfn victor3d"
 
 echo "Все готово! Перезагрузись и кайфуй!"
 
