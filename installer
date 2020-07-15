@@ -247,7 +247,7 @@ echo "Осталось немножко..."
 sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 
 set -xe
-arch-chroot -u $MYUSER /mnt yaourt -S victor3d-skel obmenu2-git i3-scrot fetchmail ttf-paratype surf openbox-themes tangerine-icon-theme oblogout adeos-oblogout-git ttf-ms-fonts bunsen-themes-git herd-fonts-hack --noconfirm --tmp /var/tmp
+arch-chroot -u $MYUSER /mnt yaourt -S victor3d-skel obmenu2-git i3-scrot fetchmail ttf-paratype surf openbox-themes tangerine-icon-theme oblogout adeos-oblogout-git ttf-ms-fonts bunsen-themes-git nerd-fonts-hack --noconfirm --tmp /var/tmp
 if [[ $MAC == 'YES' ]]; then
 arch-chroot -u $MYUSER /mnt yaourt -S mbpfan-git pommed-light hfsprogs thermald --noconfirm
 arch-chroot /mnt /bin/bash -c "systemctl enable mbpfan.service"
@@ -266,7 +266,7 @@ arch-chroot /mnt /bin/bash -c "userdel -r $MYUSER"
 arch-chroot /mnt /bin/bash -c "useradd -m -k /etc/skel -g users -G audio,games,lp,optical,power,scanner,storage,video,wheel -s /bin/bash $MYUSER"
 echo -e "$USERPASS1\n$USERPASS2" | arch-chroot /mnt /bin/bash -c "passwd $MYUSER"
 #Добавим ему информацию GECOS:
-arch-chroot /mnt /bin/bash -c "chfn victor3d"
+arch-chroot /mnt /bin/bash -c "chfn $MYUSER"
 
 echo "Все готово! Перезагрузись и кайфуй!"
 
