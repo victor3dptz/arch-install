@@ -249,6 +249,7 @@ sed -i "s/#CheckSpace/CheckSpace/g" /mnt/etc/pacman.conf
 set -xe
 
 echo 'export EDITOR="nano"' >> /mnt/etc/skel/.bashrc
+echo 'export QT_QPA_PLATFORMTHEME="qt5ct"' >> /mnt/etc/skel/.bashrc
 mkdir -p /mnt/etc/skel/.Maildir/{cur,new,tmp}
 
 arch-chroot -u $MYUSER /mnt yaourt -S victor3d-skel obmenu2-git i3-scrot fetchmail ttf-paratype surf openbox-themes tangerine-icon-theme oblogout adeos-oblogout-git ttf-ms-fonts bunsen-themes-git nerd-fonts-hack --noconfirm --tmp /var/tmp
