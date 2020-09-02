@@ -25,9 +25,12 @@ xset b off
 # Set keyboard settings - 250 ms delay and 25 cps repeat rate
 xset r rate 250 25
 
+# Mac Color Profile
+#xcalib /etc/macprofile.icc
+
 ## Configure touchpad. See 'man synaptics' for more info.
 ## (Now might be using libinput instead of synaptics.)
-synclient VertEdgeScroll=1 HorizEdgeScroll=1 TapButton1=1 2>/dev/null
+synclient VertEdgeScroll=1 HorizEdgeScroll=1 TapButton1=1 TapButton2=3 VertScrollDelta=-500 HorizScrollDelta=-500 2>/dev/null
 
 ## Disable touchpad while typing
 syndaemon -i .5 -K -t -R -d &
