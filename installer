@@ -253,7 +253,7 @@ echo 'export EDITOR="nano"' >> /mnt/etc/skel/.bashrc
 echo 'QT_QPA_PLATFORMTHEME="qt5ct"' >> /mnt/etc/environment
 mkdir -p /mnt/etc/skel/.Maildir/{cur,new,tmp}
 
-arch-chroot -u $MYUSER /mnt yaourt -S victor3d-skel obmenu2-git i3-scrot fetchmail ttf-paratype surf openbox-themes tangerine-icon-theme oblogout-py3-git adeos-oblogout-git ttf-ms-fonts bunsen-themes-git nerd-fonts-hack ttf-mac-fonts --noconfirm --tmp /var/tmp
+arch-chroot -u $MYUSER /mnt yaourt -S victor3d-skel-git obmenu2-git i3-scrot fetchmail ttf-paratype surf openbox-themes tangerine-icon-theme oblogout-py3-git adeos-oblogout-git ttf-ms-fonts bunsen-themes-git nerd-fonts-hack ttf-mac-fonts --noconfirm --tmp /var/tmp
 #arch-chroot -u $MYUSER /mnt yaourt -S mate mate-extra mate-media mate-power-manager mint-backgrounds mint-themes mint-y-icons-git mate-menu mint-x-icons --noconfirm --tmp /var/tmp
 #if [[ $MAC == 'YES' ]]; then
 #arch-chroot -u $MYUSER /mnt yaourt -S light mbpfan-git pommed-light hfsprogs --noconfirm
