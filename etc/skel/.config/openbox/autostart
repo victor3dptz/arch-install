@@ -38,7 +38,7 @@ syndaemon -i .5 -K -t -R -d &
 cbatticon &
 
 #xcompmgr &
-compton -b &
+picom -b &
 
 tint2 &
 (sleep 10; conky) &
