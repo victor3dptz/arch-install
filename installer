@@ -24,7 +24,8 @@ else
             echo "..."
             ;;
         *)
-            cat $remote_file > ./installer
+        	me=`basename "$0"`
+            cat $remote_file > $me
             rm -f $local_sum
             rm -f $remote_sum
             rm -f $remote_file
