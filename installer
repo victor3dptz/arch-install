@@ -10,7 +10,8 @@ esac
 local_sum=`mktemp`
 remote_sum=`mktemp`
 remote_file=`mktemp`
-echo $(md5sum installer) | awk 'BEGIN{FS=" *"}{print $1}' > $local_sum
+me=`basename "$0"`
+echo $(md5sum $me) | awk 'BEGIN{FS=" *"}{print $1}' > $local_sum
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/installer > $remote_file
 echo $(md5sum $remote_file) | awk 'BEGIN{FS=" *"}{print $1}' > $remote_sum
 if cmp -s $local_sum $remote_sum ; then
@@ -24,7 +25,6 @@ else
             echo "..."
             ;;
         *)
-        	me=`basename "$0"`
             cat $remote_file > $me
             rm -f $local_sum
             rm -f $remote_sum
