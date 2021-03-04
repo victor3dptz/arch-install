@@ -291,11 +291,15 @@ echo 'export EDITOR="nano"' >> /mnt/etc/skel/.bashrc
 echo 'QT_QPA_PLATFORMTHEME="qt5ct"' >> /mnt/etc/environment
 mkdir -p /mnt/etc/skel/.Maildir/{cur,new,tmp}
 
-arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/victor3d-skel-git.git /home/$MYUSER/victor3d-skel-git; cd /home/$MYUSER/victor3d-skel-git; makepkg"
+mkdir /home/$MYUSER/victor3d-skel-git
+curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/pkg/victor3d-skel-git/PKGBUILD > /home/$MYUSER/victor3d-skel-git/PKGBUILD
+arch-chroot -u $MYUSER /mnt /bin/bash -c "cd /home/$MYUSER/victor3d-skel-git; makepkg"
 arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/victor3d-skel-git/victor3d-skel-git*.xz --noconfirm"
 rm -dR /mnt/home/$MYUSER/victor3d-skel-git/
 
-#arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/highsierra-backgrounds-git.git /home/$MYUSER/highsierra-backgrounds-git; cd /home/$MYUSER/highsierra-backgrounds-git; makepkg"
+#mkdir /home/$MYUSER/highsierra-backgrounds-git
+#curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/pkg/highsierra-backgrounds-git/PKGBUILD > /home/$MYUSER/highsierra-backgrounds-git/PKGBUILD
+#arch-chroot -u $MYUSER /mnt /bin/bash -c "cd /home/$MYUSER/highsierra-backgrounds-git; makepkg"
 #arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/highsierra-backgrounds-git/highsierra-backgrounds-git*.xz --noconfirm"
 #rm -dR /mnt/home/$MYUSER/highsierra-backgrounds-git/
 
