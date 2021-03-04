@@ -253,7 +253,15 @@ echo 'export EDITOR="nano"' >> /mnt/etc/skel/.bashrc
 echo 'QT_QPA_PLATFORMTHEME="qt5ct"' >> /mnt/etc/environment
 mkdir -p /mnt/etc/skel/.Maildir/{cur,new,tmp}
 
-arch-chroot -u $MYUSER /mnt yaourt -S victor3d-skel-git obmenu2-git i3-scrot ttf-paratype surf openbox-themes tangerine-icon-theme oblogout-py3-git adeos-oblogout-git ttf-ms-fonts bunsen-themes-git nerd-fonts-hack ttf-mac-fonts --noconfirm --tmp /var/tmp
+arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/victor3d-skel-git.git /home/$MYUSER/victor3d-skel-git; cd /home/$MYUSER/victor3d-skel-git; makepkg"
+arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/victor3d-skel-git/victor3d-skel-git*.xz --noconfirm"
+rm -dR /mnt/home/$MYUSER/victor3d-skel-git/
+
+#arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/highsierra-backgrounds-git.git /home/$MYUSER/highsierra-backgrounds-git; cd /home/$MYUSER/highsierra-backgrounds-git; makepkg"
+#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/highsierra-backgrounds-git/highsierra-backgrounds-git*.xz --noconfirm"
+#rm -dR /mnt/home/$MYUSER/highsierra-backgrounds-git/
+
+arch-chroot -u $MYUSER /mnt yaourt -S obmenu2-git i3-scrot ttf-paratype surf openbox-themes tangerine-icon-theme oblogout-py3-git adeos-oblogout-git ttf-ms-fonts bunsen-themes-git nerd-fonts-hack ttf-mac-fonts --noconfirm --tmp /var/tmp
 #arch-chroot -u $MYUSER /mnt yaourt -S mate mate-extra mate-media mate-power-manager mint-backgrounds mint-themes mint-y-icons-git mate-menu mint-x-icons --noconfirm --tmp /var/tmp
 #if [[ $MAC == 'YES' ]]; then
 #arch-chroot -u $MYUSER /mnt yaourt -S light mbpfan-git pommed-light hfsprogs --noconfirm
