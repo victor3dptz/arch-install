@@ -1,5 +1,12 @@
 #!/bin/bash
 
+up=`ping -c 1 -q raw.githubusercontent.com`
+case $? in
+0) echo -en "✓ \033[32;1;49mInternet is available \033[0m\n";;
+*) echo -en "☹  \033[31;1;49mWarning! \033[0m\033[31;1;5mInternet not available \033[0m\n"
+   exit;;
+esac
+
 local_sum=`mktemp`
 remote_sum=`mktemp`
 remote_file=`mktemp`
@@ -7,9 +14,9 @@ echo $(md5sum installer) | awk 'BEGIN{FS=" *"}{print $1}' > $local_sum
 curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/installer > $remote_file
 echo $(md5sum $remote_file) | awk 'BEGIN{FS=" *"}{print $1}' > $remote_sum
 if cmp -s $local_sum $remote_sum ; then
- echo -en "[✓] \033[32;1;49mInstaller is updated \033[0m\n"
+ echo -en "✓ \033[32;1;49mInstaller is updated \033[0m\n"
 else
- echo -en "[-] \033[31;1;49mWarning! \033[0m\033[33;1;49mInstalle is outdated \033[0m\n"
+ echo -en "☹  \033[31;1;49mWarning! \033[0m\033[33;1;49mInstaller is outdated \033[0m\n"
 
     read -r -p "${1:-Download new version? [Y/n]} " response
     case "$response" in
