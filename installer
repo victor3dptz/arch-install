@@ -270,7 +270,7 @@ sed -i "s/CheckSpace/#CheckSpace/g" /mnt/etc/pacman.conf
 
 echo "Установка yaourt"
 arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/package-query.git /home/$MYUSER/package-query; cd /home/$MYUSER/package-query; makepkg"
-arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/package-query/package-query*.xz --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/package-query/package-query*.zst --noconfirm"
 rm -dR /mnt/home/$MYUSER/package-query/
 arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/yaourt.git /home/$MYUSER/yaourt; cd /home/$MYUSER/yaourt/; makepkg -s --noconfirm"
 arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/yaourt/yaourt*.zst --noconfirm"
@@ -279,7 +279,7 @@ rm -dR /mnt/home/$MYUSER/yaourt/
 echo "Осталось немножко..."
 # Bunsen Themes
 #arch-chroot -u $MYUSER /mnt /bin/bash -c "git clone https://aur.archlinux.org/bunsen-themes-git.git /home/$MYUSER/bunsen-themes-git; cd /home/$MYUSER/bunsen-themes-git; makepkg"
-#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/bunsen-themes-git/bunsen-themes-git*.xz --noconfirm"
+#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/bunsen-themes-git/bunsen-themes-git*.zst --noconfirm"
 #rm -dR /mnt/home/$MYUSER/bunsen-themes-git/
 
 # Вернем взад настройку pacman
@@ -291,16 +291,12 @@ echo 'export EDITOR="nano"' >> /mnt/etc/skel/.bashrc
 echo 'QT_QPA_PLATFORMTHEME="qt5ct"' >> /mnt/etc/environment
 mkdir -p /mnt/etc/skel/.Maildir/{cur,new,tmp}
 
-mkdir -p /home/$MYUSER/victor3d-skel-git
-curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/pkg/victor3d-skel-git/PKGBUILD > /home/$MYUSER/victor3d-skel-git/PKGBUILD
-arch-chroot -u $MYUSER /mnt /bin/bash -c "cd /home/$MYUSER/victor3d-skel-git; makepkg"
-arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/victor3d-skel-git/victor3d-skel-git*.xz --noconfirm"
+arch-chroot -u $MYUSER /mnt /bin/bash -c "mkdir -p /home/$MYUSER/victor3d-skel-git; curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/pkg/victor3d-skel-git/PKGBUILD > /home/$MYUSER/victor3d-skel-git/PKGBUILD; cd /home/$MYUSER/victor3d-skel-git; makepkg"
+arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/victor3d-skel-git/victor3d-skel-git*.zst --noconfirm"
 rm -dR /mnt/home/$MYUSER/victor3d-skel-git/
 
-#mkdir /home/$MYUSER/highsierra-backgrounds-git
-#curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/pkg/highsierra-backgrounds-git/PKGBUILD > /home/$MYUSER/highsierra-backgrounds-git/PKGBUILD
-#arch-chroot -u $MYUSER /mnt /bin/bash -c "cd /home/$MYUSER/highsierra-backgrounds-git; makepkg"
-#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/highsierra-backgrounds-git/highsierra-backgrounds-git*.xz --noconfirm"
+#arch-chroot -u $MYUSER /mnt /bin/bash -c "mkdir -p /home/$MYUSER/highsierra-backgrounds-git; curl https://raw.githubusercontent.com/victor3dptz/arch-install/master/pkg/highsierra-backgrounds-git/PKGBUILD > /home/$MYUSER/highsierra-backgrounds-git/PKGBUILD; cd /home/$MYUSER/highsierra-backgrounds-git; makepkg"
+#arch-chroot /mnt /bin/bash -c "pacman -U /home/$MYUSER/highsierra-backgrounds-git/highsierra-backgrounds-git*.zst --noconfirm"
 #rm -dR /mnt/home/$MYUSER/highsierra-backgrounds-git/
 
 arch-chroot -u $MYUSER /mnt yaourt -S obmenu2-git i3-scrot ttf-paratype surf openbox-themes tangerine-icon-theme oblogout-py3-git adeos-oblogout-git ttf-ms-fonts bunsen-themes-git nerd-fonts-hack ttf-mac-fonts --noconfirm --tmp /var/tmp
